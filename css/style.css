@@ -1,0 +1,73 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #EEF9BF;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    font-size: 56px;
+    color: #75B79E;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 47px;
+    text-align: center;
+}
+
+main{
+    display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cartas {
+    width: 117px;
+    height: 146px;
+    background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.cartas img {
+    width: 100px;
+    height: 100px;
+}
+
+.carta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+}
+
+.frente {
+    transform: rotateY(180deg);
+  }
+
+.verso {
+    background-image: url(../arquivos/front.png);
+    transform: rotateY(0deg);
+    background-size: 100px;
+}
+
+.verso img{
+    visibility: hidden;
+}
+
+.frente { 
+    transform: rotateY(-180deg);
+  }
+  
+.frente img{
+    width: 80px;
+    height: 100px;
+    display: block;
+  }
