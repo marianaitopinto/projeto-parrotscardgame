@@ -16,6 +16,11 @@ header {
     text-align: center;
 }
 
+.numJogadas {
+    font-size: 26px;
+    color:red;
+}
+
 main{
     display: flex;
   justify-content: center;
@@ -70,4 +75,8 @@ main{
     width: 80px;
     height: 100px;
     display: block;
+  }
+
+  .selecionado {
+      display: none;
   }
