@@ -6,6 +6,8 @@ let CartaDois = null;
 let armazenarPares = 0;
 let qtdJogadas = 0;
 let contador = document.querySelector(".numJogadas");
+let tempo = 0;
+let idInterval;
 
 function qtdCartas() {
     while ((numeroCartas % 2 !== 0) || (numeroCartas < 4) || (numeroCartas > 14) || (numeroCartas === 0)) {
@@ -15,6 +17,7 @@ function qtdCartas() {
 }
 
 qtdCartas();
+contar();
 
 function comparador() {
     return Math.random() - 0.5;
@@ -34,17 +37,17 @@ function adicionarCartas() {
 
         const incluir = document.querySelector("main");
         incluir.innerHTML = incluir.innerHTML + `
-    <div class="cartas selecionada" onclick="selecionarCarta(this,'${cartasGif[x]}')">
+    <div class="cartas selecionada" onclick="selecionarCarta(this)" data-identifier="card">
         
         <div class="verso face">
-            <img src="${cartasGif[x]}" alt="GifsAleatorios">
+            <img src="${cartasGif[x]}" alt="GifsAleatorios" data-identifier="back-face">
         </div>
     </div>
     `
     }
 }
 
-function selecionarCarta(opcao, nomeExibicao) {
+function selecionarCarta(opcao) {
     let selecionado = opcao.querySelector(".face");
 
     if (cartasAbertas.length < 2) {
@@ -96,5 +99,18 @@ function fecharCartas(cartaUm, cartaDois) {
 
 
 function fimJogo() {
-    alert(`Fim do jogo! Você ganhou em ${qtdJogadas} jogadas.`);
+    alert(`Fim do jogo! Você ganhou em ${qtdJogadas} jogadas, em ${tempo} segundos.`);
+}
+
+
+function contar() {
+  idInterval = setInterval(tempoJogo, 1000);
+}
+
+function tempoJogo() {
+  tempo++;
+  document.querySelector(".relogio").innerHTML = `${tempo} segundos`;
+  if (armazenarPares == numeroCartas) {
+    clearInterval(idInterval);
+  }
 }

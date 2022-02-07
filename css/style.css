@@ -16,16 +16,17 @@ header {
     text-align: center;
 }
 
-.numJogadas {
+.numJogadas, .relogio {
     font-size: 26px;
     color:red;
 }
 
 main{
     display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+    justify-content: center;
+    flex-wrap: wrap;
 }
+
 .cartas {
     width: 117px;
     height: 146px;
@@ -33,9 +34,10 @@ main{
     border: 1px solid #99CEA8;
     border-radius: 5px;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     align-items: center;
-    position: relative;
+    margin: 15px;
 }
 
 .cartas img {
@@ -43,21 +45,8 @@ main{
     height: 100px;
 }
 
-.carta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    backface-visibility: hidden;
-    transition: all .5s;
-    transform-style: preserve-3d;
-}
-
-
-
 .verso {
     background-image: url(../arquivos/front.png);
-    transform: rotateY(0deg);
     background-size: 100px;
 }
 
@@ -66,4 +55,11 @@ main{
 }
 
 
+@media (max-width: 614px) {
 
+main {
+    flex-direction: column;
+    align-items: center;
+}
+
+}
