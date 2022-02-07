@@ -53,9 +53,7 @@ main{
     transform-style: preserve-3d;
 }
 
-.frente {
-    transform: rotateY(180deg);
-  }
+
 
 .verso {
     background-image: url(../arquivos/front.png);
@@ -67,16 +65,5 @@ main{
     visibility: hidden;
 }
 
-.frente { 
-    transform: rotateY(-180deg);
-  }
-  
-.frente img{
-    width: 80px;
-    height: 100px;
-    display: block;
-  }
 
-  .selecionado {
-      display: none;
-  }
+

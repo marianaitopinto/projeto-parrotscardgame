@@ -21,17 +21,17 @@ function comparador() {
 }
 
 function adicionarCartas() {
-    for (i = 0; i < numeroCartas/2; i++) {
-        cartasGif.push(`arquivos/${i}.gif`);       
+    for (i = 0; i < numeroCartas / 2; i++) {
+        cartasGif.push(`arquivos/${i}.gif`);
     }
-    for (i = 0; i < numeroCartas/2; i++) {
-        cartasGif.push(`arquivos/${i}.gif`);        
+    for (i = 0; i < numeroCartas / 2; i++) {
+        cartasGif.push(`arquivos/${i}.gif`);
     }
 
     cartasGif.sort(comparador);
 
     for (let x = 0; x < numeroCartas; x++) {
-        
+
         const incluir = document.querySelector("main");
         incluir.innerHTML = incluir.innerHTML + `
     <div class="cartas selecionada" onclick="selecionarCarta(this,'${cartasGif[x]}')">
@@ -49,10 +49,19 @@ function selecionarCarta(opcao, nomeExibicao) {
 
     if (cartasAbertas.length < 2) {
         if (selecionado.classList.contains("verso")) {
-            selecionado.classList.remove("verso");
-            cartasAbertas.push(nomeExibicao);
-            qtdJogadas++;
-            contador.innerHTML = `Jogadas: ${qtdJogadas}`;
+            if (cartasAbertas.length == 0) {
+                cartaUm = opcao;
+                selecionado.classList.remove("verso");
+                cartasAbertas.push(selecionado);
+                qtdJogadas++;
+                contador.innerHTML = `Jogadas: ${qtdJogadas}`;
+            } else {
+                cartaDois = opcao;
+                selecionado.classList.remove("verso");
+                cartasAbertas.push(selecionado);
+                qtdJogadas++;
+                contador.innerHTML = `Jogadas: ${qtdJogadas}`;
+            }
         }
     }
     if (cartasAbertas.length == 2) {
@@ -64,28 +73,28 @@ function checarIgualdade() {
     cartaUm = cartasAbertas[0];
     cartaDois = cartasAbertas[1];
 
-    if (cartaUm !== cartaDois) {
-        fecharCartas();
-    } 
+    if (cartaUm.innerHTML !== cartaDois.innerHTML) {
+        setTimeout(function () { fecharCartas(cartaUm,cartaDois); }, 1000);
+                
+    }
 
-    else {        
+    else {
         armazenarPares = armazenarPares + 2;
         if (armazenarPares < numeroCartas) {
-            cartasAbertas = [];        
+            cartasAbertas = [];
         } else if (armazenarPares == numeroCartas) {
-            setTimeout(alertar, 1000);
+            setTimeout(fimJogo, 1000);
         }
     }
-    
+
+}
+function fecharCartas(cartaUm, cartaDois) {
+    cartaUm.classList.add("verso");
+    cartaDois.classList.add("verso");
+    cartasAbertas = [];
 }
 
-function fecharCartas() {
-    let fechar = document.querySelectorAll(".adicionado");
-    fechar.classList.add("verso");
-    //cartaUm.classList.add ("verso");
-    //cartaDois.classList.add ("verso");
-}
 
-function alertar() {
+function fimJogo() {
     alert(`Fim do jogo! Você ganhou em ${qtdJogadas} jogadas.`);
 }
